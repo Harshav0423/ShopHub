@@ -1,0 +1,43 @@
+
+.searchdiv {
+	display: flex;
+	width: 60%;
+	height: 50px;
+	text-align: center;
+    border: 3px solid black;
+	margin-left: 20%;
+}
+
+.searchicon {
+	height: 100%;
+	width: 20%;
+	background-color:rgb(9, 0, 111);
+	display: grid;
+	place-items: center;
+    cursor: pointer;
+}
+
+.inputdiv {
+    width: 80%;
+    height: 99%;
+    font-size: x-large;
+}
+
+.inputdiv input[type="text"] {
+	width: inherit;
+    height: 97%;
+    font-size: inherit;
+	background-color: white;
+	border: 0;
+	border-radius: 2px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+    text-align: center;
+}
+.inputdiv input[type="text"]:focus {
+	outline: none;
+}
+.searchIcon svg {
+	font-size: 35px;
+
+}

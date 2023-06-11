@@ -1,0 +1,51 @@
+.header {
+	height: 5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgb(9, 0, 111);
+	color: white;
+	padding: 0 10%;
+	font-size: x-large;
+}
+
+.list {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 50px;
+}
+
+.list a {
+	text-decoration: none;
+	color: white;
+	font-size: 1.75rem;
+
+}
+.list li {
+	margin-left: 10px;
+}
+.list a:hover,
+.list a.active {
+	color: var(--color-primary-800);
+	text-decoration: underline;
+}
+
+.lgtbutton {
+	font-size: 1.25rem;
+	background-color: #ffbb00;
+	border: 1px solid #ffbb00;
+	padding: 0.5rem 1.5rem;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	color: #2c2922;
+	font-weight: 600;
+}
+
+.lgtbutton:hover,
+.lgtbutton:active {
+	background-color: #ffa600;
+	border-color: #ffa600;
+}

@@ -1,0 +1,39 @@
+div.radiocontainer {
+	border: 2px solid black;
+}
+
+div.radiocontainer input[type="radio"] {
+	opacity: 0;
+	display: none;
+	margin: 0;
+	outline: none;
+}
+
+div.radiocontainer input[type="radio"]:checked + label {
+	background-color: rgb(9, 0, 111);
+	color: white;
+	animation-name: radio-active;
+	animation-duration: 0.2s;
+}
+
+@keyframes radio-active {
+	from {
+		transform: scale(0.6, 0.6);
+	}
+	to {
+		transform: scale(1, 1);
+	}
+}
+
+div.radiocontainer label {
+	font-size: xxx-large;
+	font-weight: 500;
+	cursor: pointer;
+	background: none;
+	/* display: inline-block; */
+	outline: none;
+	letter-spacing: 0.15em;
+	background-color: white;
+	color: black;
+	/* transition: all ease-in-out 0.1s; */
+}
