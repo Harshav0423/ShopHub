@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from "../../components/input";
 import { regexEmail, regexPassword } from "../../utilities/extraFunctions";
 import { loginActions } from "../../reduxStore/login-slice";
+import { errorActions } from "../../reduxStore/error-slice";
 import styles from "./login.module.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Login({ toggleForm }) {
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
@@ -29,18 +31,49 @@ function Login({ toggleForm }) {
 	function goToSignup() {
 		toggleForm();
 	}
-	function handleForm(event) {
+	const handleForm = async (event) => {
 		event.preventDefault();
 		console.log(userEmail, userPassword);
-		if (isEmailValidated && isPasswordValidated) {
-			dispatch(loginActions.login());
-			if (typeOfUser === "user") {
-				navigate("/user");
-			} else if (typeOfUser === "seller") {
-				navigate("/seller");
-			}
+		if (typeOfUser === "user") {
+			navigate("/user");
+		} else if (typeOfUser === "seller") {
+			navigate("/seller");
 		}
-	}
+		if (isEmailValidated && isPasswordValidated) {
+			const payload = {
+				email: userEmail,
+				password: userPassword,
+				typeofuser: typeOfUser,
+			};
+			// const r = await axios
+			// 	.post("http://localhost:8080/login", payload)
+			// 	.then((res) => {
+			// 		console.log(res);
+			// 		const data = res.data;
+			// 		const response_code = data.status;
+			// 		if (response_code === 200) {
+			// 			dispatch(errorActions.deactivateError());
+			// 			dispatch(loginActions.login());
+			// 			const userInfo = JSON.stringify({...data.data});
+			// 			delete userInfo?.password;
+			// 			localStorage.setItem("userinfo", userInfo);
+			// 			if (typeOfUser === "user") {
+			// 				navigate("/user");
+			// 			} else if (typeOfUser === "seller") {
+			// 				navigate("/seller");
+			// 			}
+			// 		} else {
+			// 			dispatch(errorActions.activateError(data.message));
+			// 			console.log(data.message);
+			// 		}
+			// 	})
+			// 	.catch((error) => {
+			// 		console.log(error);
+			// 		dispatch(errorActions.activateError("Something went wrong"));
+			// 	});
+		
+		}
+	};
 	return (
 		<div className={styles.container}>
 			<form className={styles.formdiv}>

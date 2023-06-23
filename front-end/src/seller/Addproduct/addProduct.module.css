@@ -44,4 +44,8 @@
 	font-family: sans-serif;
 	margin: 20px 0px;
 	font-size: 24px;
+	font-weight: 400;
+}
+.greybtn {
+	background-color: rgb(70, 69, 74);
 }

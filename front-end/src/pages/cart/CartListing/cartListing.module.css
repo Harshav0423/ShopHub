@@ -1,0 +1,7 @@
+.productscontainer {
+    align-items: center;
+	display: flex;
+	flex-direction: column;
+	line-height: 15px;
+	font-size: large;
+}

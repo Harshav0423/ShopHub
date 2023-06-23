@@ -6,7 +6,6 @@ function Popup({ children, closeFunction, title }) {
 		<div className={styles.popupcontainer}>
 			<div className={styles.popupcontent}>
 				<h2>{title}</h2>
-				<p>This is the content of the popup.</p>
 				{children}
 				<button onClick={closeFunction}>Close Popup</button>
 			</div>

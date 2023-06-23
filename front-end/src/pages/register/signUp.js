@@ -11,6 +11,7 @@ import {
 } from "../../utilities/extraFunctions";
 import styles from "./signUp.module.css";
 import axios from "axios";
+import { errorActions } from "../../reduxStore/error-slice";
 function SignUp({ toggleForm }) {
 	const [userName, setUserName] = useState("");
 	const [userEmail, setUserEmail] = useState("");
@@ -42,14 +43,7 @@ function SignUp({ toggleForm }) {
 	function goToLogin() {
 		toggleForm();
 	}
-	const savingUser = async () => {
-		const response = await axios.post(
-			"http://localhost:8080/save-user",
-			payload
-		);
-		console.log(response);
-	};
-	function handleForm(event) {
+	const handleForm = async (event) => {
 		event.preventDefault();
 		console.log(userEmail, userPassword, userCPassword, userPhone);
 		if (
@@ -58,10 +52,7 @@ function SignUp({ toggleForm }) {
 			isPhoneValidated &&
 			matchPswrd
 		) {
-			// check with database and through proper error
-			// go to home
-
-			console.log("all values are validated", typeOfUser);
+			console.log("all values are validated for", typeOfUser);
 			dispatch(loginActions.login());
 			payload = {
 				name: userName,
@@ -71,10 +62,35 @@ function SignUp({ toggleForm }) {
 				phone: userPhone,
 				typeofuser: typeOfUser,
 			};
-			savingUser();
-			navigate("/user");
+
+			const r = await axios
+				.post("http://localhost:8080/save-user", payload)
+				.then((res) => {
+					console.log(res);
+					const data = res.data;
+					const response_code = data.status;
+					if (response_code === 200) {
+						dispatch(errorActions.deactivateError());
+						dispatch(loginActions.login());
+						const userInfo = JSON.stringify({ ...data.data });
+						delete userInfo?.password;
+						localStorage.setItem("userinfo", userInfo);
+						if (typeOfUser === "user") {
+							navigate("/user");
+						} else if (typeOfUser === "seller") {
+							navigate("/seller");
+						}
+					} else {
+						dispatch(errorActions.activateError(data.message));
+						console.log(data.message);
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					dispatch(errorActions.activateError("Something went wrong"));
+				});
 		}
-	}
+	};
 	return (
 		<div className={styles.container}>
 			<form className={styles.formdiv}>
@@ -105,7 +121,7 @@ function SignUp({ toggleForm }) {
 					Minimum 8characters, with atleast One Capital and special letter
 				</p>
 				<Input
-					type="cpassword"
+					type="password"
 					name="cpswrd"
 					content="Confirm Password"
 					onChange={(e) => {

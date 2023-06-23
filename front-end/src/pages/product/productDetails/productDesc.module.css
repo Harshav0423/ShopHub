@@ -1,0 +1,111 @@
+.productdetailsdescription{
+	width: 70vw;
+	height: 50vh;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-evenly;
+	line-height: 25px;
+}
+
+.productdetailsdescription h1 {
+	margin-bottom: 2rem;
+}
+.gendercontainer {
+	font-size: 0.9rem;
+}
+
+.descriptioncontainer {
+	font-size: 1rem;
+	line-height: 22px;
+	margin-bottom: 20px;
+}
+
+.descriptioncontainer > span {
+	font-weight: 600;
+}
+
+.gendercontainer > span {
+	font-weight: 600;
+	color: black;
+}
+.gendercontainer {
+	color: grey;
+}
+
+.sizecontainer {
+	font-size: 0.9rem;
+	color: grey;
+}
+.sizecontainer > span {
+	font-weight: bold;
+	color: black;
+}
+
+.productpricecontainer {
+	margin-bottom: 20px;
+}
+
+.productoriginalprice {
+	font-size: 1.5rem;
+	color: grey;
+	text-decoration: line-through;
+	text-decoration-color: red;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.productdiscountprice {
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
+.productcardbuttonscontainer {
+	display: flex;
+	flex-flow: column nowrap;
+	margin-bottom: 30px;
+}
+
+.addtocartbtn {
+	font-weight: 800;
+	border: none;
+	margin-bottom: 8px;
+	border-radius: 10px;
+	font-size: 1em;
+	color: white;
+	background-color: var(--primary-color);
+	padding: 15px 45px;
+	text-transform: uppercase;
+}
+
+.addtocartbtn:hover {
+	background-color: rgb(0, 0, 0);
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+}
+
+.addtowishlistbtn {
+	border: none;
+	background-color: rgb(232, 232, 232);
+	color: var(--primary-color);
+	border-radius: 10px;
+	padding: 15px 45px;
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: 1em;
+}
+
+.addtowishlistbtn:hover {
+	background-color: rgb(214, 214, 214);
+	color: rgb(0, 0, 0);
+	box-shadow: none;
+}
+
+@media (min-width: 768px) {
+	.productdetailsdescription {
+		width: 25vw;
+		height: 300px;
+		justify-content: space-between;
+		line-height: 26px;
+		margin-top: -30px;
+	}
+}
